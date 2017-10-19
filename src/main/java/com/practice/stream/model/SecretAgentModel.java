@@ -1,18 +1,28 @@
 package com.practice.stream.model;
 
-public class SecretAgentModel {
+public class SecretAgentModel implements ForeignAgent{
 	private String name;
 	private boolean active;
 	private Location location;
 	private Skill skill;
 
-	private SecretAgentModel(String name, boolean active, Location location, Skill skill) {
+	public SecretAgentModel(String name, Location location, Skill skill) {
 		this.name = name;
-		this.active = active;
+		this.active = false;
 		this.location = location;
 		this.skill = skill;
 	}
 
+	public void activate(){
+		this.active = true;
+	}
 
+	@Override public String getName() {
+		return name;
+	}
 
+	@Override
+	public Skill getSkill() {
+		return skill;
+	}
 }

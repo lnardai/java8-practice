@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -28,12 +27,24 @@ public class BasicStreamTransformationsServiceTest {
 		assertEquals("luke skywalker", result.get(4));
 	}
 
+	@Test
+	public void removeDuplicates() throws Exception {
+		assertEquals("Should remove leia organa",6, service.removeDuplicates(namesWithDots).size());
+	}
+
+	@Test
+	public void getFirstTwo() throws Exception {
+		assertEquals("Should get 3 skywalkers",2, service.getFirstTwo(namesWithDots, "skywalker").size());
+	}
+
 	public static void fillMap() {
 		namesWithDots.put(1, "leaia.organa");
 		namesWithDots.put(2, "anakin.skywalker");
 		namesWithDots.put(3, "han.solo");
 		namesWithDots.put(4, "kylo.ren");
 		namesWithDots.put(5, "luke.skywalker");
+		namesWithDots.put(6, "shmi.skywalker");
+		namesWithDots.put(7, "leaia.organa");
 	}
 
 }
