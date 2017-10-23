@@ -1,18 +1,20 @@
 package com.practice.stream;
 
+import com.practice.stream.model.ForeignAgent;
+import com.practice.stream.model.Skill;
+
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.practice.stream.model.ForeignAgent;
-import com.practice.stream.model.Skill;
-
 public class AdvancedStreamService {
 
-	private String fileName = "big_text_file.txt";
+	private String fileName = "./big_text_file.txt";
 
 	public long countWordInBigFile() {
 		return createStreamFromFile().filter(line -> line.contains("Sherlock")).count();
@@ -25,10 +27,12 @@ public class AdvancedStreamService {
 	}
 
 	private Stream<String> createStreamFromFile() {
-		String filePath = this.getClass().getClassLoader().getResource(fileName).getPath();
 		try {
-			return Files.lines(Paths.get(filePath));
+			Path path = Paths.get(getClass().getClassLoader().getResource(fileName).toURI());
+			return Files.lines(path);
 		} catch(IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 		return Stream.empty();
