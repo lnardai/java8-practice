@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -30,6 +31,16 @@ public class AdvancedStreamServiceTest {
 	@Test
 	public void countWordInBigFile() throws Exception {
 		assertEquals(95, service.countWordInBigFile());
+	}
+
+	@Test
+	public void groupBySimpleExample() throws Exception {
+		Map<Skill, Long> result =service.groupBySimple(secretAgents);
+		assertEquals(3, result.size());
+		assertEquals(1, result.get(Skill.ROOKIE).longValue());
+		assertEquals(2, result.get(Skill.GODLIKE).longValue());
+		assertEquals(1, result.get(Skill.INTERMEDIATE).longValue());
+
 	}
 
 	@Test
