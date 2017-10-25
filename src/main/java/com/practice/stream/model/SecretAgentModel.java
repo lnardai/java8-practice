@@ -1,6 +1,6 @@
 package com.practice.stream.model;
 
-public class SecretAgentModel implements ForeignAgent{
+public class SecretAgentModel implements Agent {
 	private String name;
 	private boolean active;
 	private Location location;

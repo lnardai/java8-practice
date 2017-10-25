@@ -1,10 +1,10 @@
 package com.practice.stream.model;
 
 
-public interface ForeignAgent {
+public interface Agent {
 	String getName();
 
 	default Skill getSkill() {
-		return null;
+		return Skill.ROOKIE;
 	}
 }

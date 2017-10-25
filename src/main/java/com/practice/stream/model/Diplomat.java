@@ -1,6 +1,6 @@
 package com.practice.stream.model;
 
-public class Diplomat implements ForeignAgent {
+public class Diplomat implements Agent {
 	private String name;
 	private boolean active;
 	private Location location;

@@ -5,14 +5,14 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.practice.stream.model.ForeignAgent;
-import com.practice.stream.model.SecretAgentModel;
+import com.practice.stream.model.Agent;
 import com.practice.stream.model.Skill;
 
 public class AdvancedStreamService {
@@ -23,12 +23,18 @@ public class AdvancedStreamService {
 		return createStreamFromFile().filter(line -> line.contains("Sherlock")).count();
 	}
 
-	public Map<Skill, Long> groupBySimple(List<ForeignAgent> items) {
-		return items.stream().map(item-> item.getSkill()).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
+	public Map<Skill, Long> groupBySimple(List<Agent> items) {
+		return items.stream().collect(Collectors.groupingBy(item -> item.getSkill(), Collectors.counting()));
 	}
 
-	public List<ForeignAgent> mergeAgentsBySkill(List<ForeignAgent> secretAgents, List<ForeignAgent> diplomats, Skill skill) {
+	public Map<Agent, Long> sortMapByValue(Map<Agent, Long> agentsWithSalary) {
+		return agentsWithSalary.entrySet().stream()
+				.sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+	}
+
+	public List<Agent> mergeAgentsBySkill(List<Agent> secretAgents, List<Agent> diplomats, Skill skill) {
 		return Stream.concat(secretAgents.stream(), diplomats.stream())
 				.filter(i -> filterBySkill(i, skill))
 				.collect(Collectors.toList());
@@ -46,7 +52,7 @@ public class AdvancedStreamService {
 		return Stream.empty();
 	}
 
-	private boolean filterBySkill(ForeignAgent i, Skill skill) {
+	private boolean filterBySkill(Agent i, Skill skill) {
 		return i.getSkill().equals(skill);
 	}
 }
