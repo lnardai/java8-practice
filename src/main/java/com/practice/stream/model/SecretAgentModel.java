@@ -13,11 +13,18 @@ public class SecretAgentModel implements Agent {
 		this.skill = skill;
 	}
 
+	@Override
 	public void activate(){
 		this.active = true;
 	}
 
-	@Override public String getName() {
+	@Override
+	public boolean isActivated() {
+		return active;
+	}
+
+	@Override
+	public String getName() {
 		return name;
 	}
 

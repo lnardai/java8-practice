@@ -40,6 +40,13 @@ public class AdvancedStreamService {
 				.collect(Collectors.toList());
 	}
 
+
+	public void activateAllAgentsWith(List<Agent> agents) {
+		agents.stream()
+				.filter(a -> a.getSkill() == Skill.ROOKIE)
+				.forEach((item) -> item.activate());
+	}
+
 	private Stream<String> createStreamFromFile() {
 		try {
 			Path path = Paths.get(getClass().getClassLoader().getResource(fileName).toURI());

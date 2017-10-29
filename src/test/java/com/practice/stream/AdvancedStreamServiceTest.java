@@ -36,6 +36,14 @@ public class AdvancedStreamServiceTest {
 	}
 
 	@Test
+	public void activateAllAgentsWithRookieSkill() throws Exception {
+		service.activateAllAgentsWith(diplomats);
+		assertEquals(true, diplomats.get(0).isActivated());
+		assertEquals(true, diplomats.get(1).isActivated());
+		assertEquals(false, diplomats.get(2).isActivated());
+	}
+
+	@Test
 	public void sortList() throws Exception {
 		Map<Agent, Long> result = service.sortMapByValue(agentsWithSalary);
 		Iterator<Map.Entry<Agent, Long>> iterator = result.entrySet().iterator();

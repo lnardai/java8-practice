@@ -13,8 +13,21 @@ public class Diplomat implements Agent {
 		this.skill = skill;
 	}
 
-	@Override public String getName() {
+	@Override
+	public String getName() {
 		return name;
+	}
+
+
+
+	@Override
+	public void activate() {
+		this.active = true;
+	}
+
+	@Override
+	public boolean isActivated() {
+		return active;
 	}
 
 	@Override
