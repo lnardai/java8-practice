@@ -19,14 +19,18 @@ public class AdvancedStreamService {
 
 	private String fileName = "./big_text_file.txt";
 
-	public long countWordInBigFile() {
-		return createStreamFromFile().filter(line -> line.contains("Sherlock")).count();
+	public long countWordInBigFile(String wordToCount) {
+		return createStreamFromFile().filter(line -> line.contains(wordToCount)).count();
 	}
 
-	public Map<Skill, Long> groupBySimple(List<Agent> items) {
+	public Map<Skill, Long> groupBySkill(List<Agent> items) {
 		return items.stream().collect(Collectors.groupingBy(item -> item.getSkill(), Collectors.counting()));
 	}
 
+
+	/*
+	* Receive an unordered Map, and sort it by the Map's value, hint: LinkedHashMap
+	* */
 	public Map<Agent, Long> sortMapByValue(Map<Agent, Long> agentsWithSalary) {
 		return agentsWithSalary.entrySet().stream()
 				.sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
@@ -34,19 +38,27 @@ public class AdvancedStreamService {
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 	}
 
+	/*
+	* Get the merged result of both list who have the same skill.
+	* */
 	public List<Agent> mergeAgentsBySkill(List<Agent> secretAgents, List<Agent> diplomats, Skill skill) {
 		return Stream.concat(secretAgents.stream(), diplomats.stream())
 				.filter(i -> filterBySkill(i, skill))
 				.collect(Collectors.toList());
 	}
 
-
-	public void activateAllAgentsWith(List<Agent> agents) {
+	/*
+	* Change the original list elements and active all Agents with submitted skills.
+	* */
+	public void activateAllAgentsWith(List<Agent> agents, Skill usedSkill) {
 		agents.stream()
-				.filter(a -> a.getSkill() == Skill.ROOKIE)
+				.filter(a -> a.getSkill() == usedSkill)
 				.forEach((item) -> item.activate());
 	}
 
+	/*
+	* Utility for reading files as a stream.
+	* */
 	private Stream<String> createStreamFromFile() {
 		try {
 			Path path = Paths.get(getClass().getClassLoader().getResource(fileName).toURI());

@@ -32,12 +32,12 @@ public class AdvancedStreamServiceTest {
 
 	@Test
 	public void countWordInBigFile() throws Exception {
-		assertEquals(95, service.countWordInBigFile());
+		assertEquals(95, service.countWordInBigFile("Sherlock"));
 	}
 
 	@Test
 	public void activateAllAgentsWithRookieSkill() throws Exception {
-		service.activateAllAgentsWith(diplomats);
+		service.activateAllAgentsWith(diplomats, Skill.ROOKIE);
 		assertEquals(true, diplomats.get(0).isActivated());
 		assertEquals(true, diplomats.get(1).isActivated());
 		assertEquals(false, diplomats.get(2).isActivated());
@@ -54,7 +54,7 @@ public class AdvancedStreamServiceTest {
 
 	@Test
 	public void groupBySimpleExample() throws Exception {
-		Map<Skill, Long> result = service.groupBySimple(secretAgents);
+		Map<Skill, Long> result = service.groupBySkill(secretAgents);
 		assertEquals(3, result.size());
 		assertEquals(1, result.get(Skill.ROOKIE).longValue());
 		assertEquals(2, result.get(Skill.GODLIKE).longValue());

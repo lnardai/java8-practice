@@ -34,7 +34,7 @@ public class BasicStreamTransformationsServiceTest {
 
 	@Test
 	public void getFirstTwo() throws Exception {
-		assertEquals("Should get 3 skywalkers",2, service.getFirstTwo(namesWithDots, "skywalker").size());
+		assertEquals("Should get 3 skywalkers",2, service.getFirstTwoWithName(namesWithDots, "skywalker").size());
 	}
 
 	public static void fillMap() {
