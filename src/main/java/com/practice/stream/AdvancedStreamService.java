@@ -1,5 +1,7 @@
 package com.practice.stream;
 
+import static java.util.stream.Collectors.partitioningBy;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -24,7 +26,8 @@ public class AdvancedStreamService {
 	}
 
 	public Map<Skill, Long> groupBySkill(List<Agent> items) {
-		return items.stream().collect(Collectors.groupingBy(item -> item.getSkill(), Collectors.counting()));
+		return items.stream()
+				.collect(Collectors.groupingBy(item -> item.getSkill(), Collectors.counting()));
 	}
 
 
@@ -54,6 +57,11 @@ public class AdvancedStreamService {
 		agents.stream()
 				.filter(a -> a.getSkill() == usedSkill)
 				.forEach((item) -> item.activate());
+	}
+
+
+	public Map<Boolean, List<Agent>> partitionListBySalary(List<Agent> agents, Skill skill){
+		return agents.stream().collect(partitioningBy(a -> a.getSkill().equals(skill)));
 	}
 
 	/*

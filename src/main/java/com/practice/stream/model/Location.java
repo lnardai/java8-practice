@@ -5,10 +5,10 @@ import java.util.Date;
 public class Location {
 
 	private Date lastSeen;
-	private String country;
+	private String continent;
 
-	public Location(Date lastSeen, String country) {
+	public Location(Date lastSeen, String continent) {
 		this.lastSeen = lastSeen;
-		this.country = country;
+		this.continent = continent;
 	}
 }

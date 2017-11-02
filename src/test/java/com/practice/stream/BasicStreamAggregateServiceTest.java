@@ -1,6 +1,6 @@
 package com.practice.stream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.IntSummaryStatistics;
@@ -35,11 +35,16 @@ public class BasicStreamAggregateServiceTest {
 	}
 
 	@Test
+	public void findFirstBiggerThan() throws Exception {
+		assertEquals(13, service.getFirstBiggerThan(exampleNumberList, 10));
+	}
+
+	@Test
 	public void summaryStatistics() throws Exception {
 		IntSummaryStatistics statistics = service.sumStatistics(exampleNumberList);
 		assertEquals(13, statistics.getMax());
-		//assertEquals(-3, statistics.getMin()); wtf?
-		assertEquals(3, statistics.getCount());
+		assertEquals(-3, statistics.getMin());
+		assertEquals(6, statistics.getCount());
 	}
 
 	@Test
@@ -47,7 +52,7 @@ public class BasicStreamAggregateServiceTest {
 		assertEquals(2, service.countZeroes(exampleNumberList));
 	}
 
-	public static void fillArray(){
+	private static void fillArray(){
 		exampleNumberList.add(3);
 		exampleNumberList.add(10);
 		exampleNumberList.add(13);
