@@ -26,8 +26,7 @@ public class AdvancedStreamService {
 	}
 
 	public Map<Skill, Long> groupBySkill(List<Agent> items) {
-		return items.stream()
-				.collect(Collectors.groupingBy(item -> item.getSkill(), Collectors.counting()));
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 
@@ -35,33 +34,26 @@ public class AdvancedStreamService {
 	* Receive an unordered Map, and sort it by the Map's value, hint: LinkedHashMap
 	* */
 	public Map<Agent, Long> sortMapByValue(Map<Agent, Long> agentsWithSalary) {
-		return agentsWithSalary.entrySet().stream()
-				.sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	/*
 	* Get the merged result of both list who have the same skill.
 	* */
 	public List<Agent> mergeAgentsBySkill(List<Agent> secretAgents, List<Agent> diplomats, Skill skill) {
-		return Stream.concat(secretAgents.stream(), diplomats.stream())
-				.filter(i -> filterBySkill(i, skill))
-				.collect(Collectors.toList());
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	/*
 	* Change the original list elements and active all Agents with submitted skills.
 	* */
 	public void activateAllAgentsWith(List<Agent> agents, Skill usedSkill) {
-		agents.stream()
-				.filter(a -> a.getSkill() == usedSkill)
-				.forEach((item) -> item.activate());
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 
 	public Map<Boolean, List<Agent>> partitionListBySalary(List<Agent> agents, Skill skill){
-		return agents.stream().collect(partitioningBy(a -> a.getSkill().equals(skill)));
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	/*

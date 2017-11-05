@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.practice.stream.model.Agent;
@@ -18,6 +19,7 @@ import com.practice.stream.model.Location;
 import com.practice.stream.model.SecretAgentModel;
 import com.practice.stream.model.Skill;
 
+@Ignore
 public class AdvancedStreamServiceTest {
 
 	private AdvancedStreamService service = new AdvancedStreamService();

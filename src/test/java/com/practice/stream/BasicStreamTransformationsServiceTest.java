@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class BasicStreamTransformationsServiceTest {
 
 	private static Map<Integer, String> namesWithDots = new HashMap<>();

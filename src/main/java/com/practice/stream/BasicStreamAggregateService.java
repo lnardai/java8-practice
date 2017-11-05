@@ -6,26 +6,26 @@ import java.util.List;
 public class BasicStreamAggregateService {
 
 	public double getAvarage(List<Integer> numbers) {
-		return numbers.stream().mapToInt(i -> i).average().orElse(0);
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	public int getFirstBiggerThan(List<Integer> numbers, int limit) {
-		return numbers.stream().filter(i -> i > limit).findFirst().orElse(0);
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	public int getSum(List<Integer> numbers) {
-		return numbers.stream().mapToInt(i -> i).sum();
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	public int positiveSum(List<Integer> numbers) {
-		return numbers.stream().filter(i -> i > 0).mapToInt(i -> i).sum();
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	public IntSummaryStatistics sumStatistics(List<Integer> numbers) {
-		return numbers.stream().mapToInt(i -> i).summaryStatistics();
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	public long countZeroes(List<Integer> numbers) {
-		return numbers.stream().filter(i -> i == 0).count();
+		throw new UnsupportedOperationException("Not implemented");
 	}
 }
