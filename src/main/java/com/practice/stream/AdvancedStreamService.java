@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,7 +39,7 @@ public class AdvancedStreamService {
 		return agentsWithSalary.entrySet().stream()
 				.sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+											(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 	}
 
 	/*
@@ -46,7 +47,7 @@ public class AdvancedStreamService {
 	* */
 	public List<Agent> mergeAgentsBySkill(List<Agent> secretAgents, List<Agent> diplomats, Skill skill) {
 		return Stream.concat(secretAgents.stream(), diplomats.stream())
-				.filter(i -> filterBySkill(i, skill))
+				.filter(filterBySkill(skill))
 				.collect(Collectors.toList());
 	}
 
@@ -55,7 +56,7 @@ public class AdvancedStreamService {
 	* */
 	public void activateAllAgentsWith(List<Agent> agents, Skill usedSkill) {
 		agents.stream()
-				.filter(a -> a.getSkill() == usedSkill)
+				.filter(filterBySkill(usedSkill))
 				.forEach((item) -> item.activate());
 	}
 
@@ -79,7 +80,7 @@ public class AdvancedStreamService {
 		return Stream.empty();
 	}
 
-	private boolean filterBySkill(Agent i, Skill skill) {
-		return i.getSkill().equals(skill);
+	private Predicate<Agent> filterBySkill(Skill skill) {
+		return p -> p.getSkill().equals(skill);
 	}
 }

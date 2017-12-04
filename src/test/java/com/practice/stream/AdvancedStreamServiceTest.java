@@ -42,6 +42,7 @@ public class AdvancedStreamServiceTest {
 		assertEquals(5, result.size());
 		assertEquals("Pichael", iterator.next().getKey().getName());
 		assertEquals("Stephanie", iterator.next().getKey().getName());
+		assertEquals("Clara", iterator.next().getKey().getName());
 	}
 
 	@Test
