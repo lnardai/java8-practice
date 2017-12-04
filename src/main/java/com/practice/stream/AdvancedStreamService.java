@@ -22,7 +22,7 @@ public class AdvancedStreamService {
 	private String fileName = "./big_text_file.txt";
 
 	public long countWordInBigFile(String wordToCount) {
-		return createStreamFromFile().filter(line -> line.contains(wordToCount)).count();
+		throw new UnsupportedOperationException("Not implemented");
 	}
 
 	public Map<Skill, Long> groupBySkill(List<Agent> items) {
